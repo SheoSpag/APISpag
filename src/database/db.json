@@ -1,0 +1,32 @@
+{
+  "objetos": [
+    {
+      "id": 2,
+      "forma": "Cuadrado",
+      "descripcion": "Hola soy un Cuadrado",
+      "createdAt": "4/20/2022",
+      "updatedAt": "4/20/2022"
+    },
+    {
+      "id": 1,
+      "forma": "Circulo",
+      "descripcion": "Hola soy un Circulo",
+      "createdAt": "4/20/2022",
+      "updatedAt": "4/20/2022"
+    },
+    {
+      "id": 3,
+      "forma": "Triangulo",
+      "descripcion": "Hola soy un Triangulo",
+      "createdAt": "4/20/2022",
+      "updatedAt": "4/20/2022"
+    },
+    {
+      "id": "6fa1e38e-f9b3-42e5-8e50-b66d3a620dcd",
+      "forma": "Elipse",
+      "descripcion": "Hola de nuevo, soy un elipse, pero editado",
+      "createdAt": "25/8/2023",
+      "updatedAt": "25/8/2023"
+    }
+  ]
+}
