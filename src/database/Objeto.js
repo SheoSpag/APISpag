@@ -30,7 +30,7 @@ Objeto.editObject = (id, cambios) => {
     const existe = DB.objetos.findIndex(e => e.id === id)
 
     if (!(existe > -1)) {
-        return;
+        return new Error;
     }
 
     const objetoEditado = {

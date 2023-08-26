@@ -6,6 +6,10 @@ const objetoController = {}
 
 objetoController.getAllObjects = (req, res) => {
     const allObjects = objetoService.getAllObjetcts()
+
+    if (!allObjects) {
+        res.status()
+    }
     res.send({status: 'OK', data: allObjects})
 }
 
@@ -21,7 +25,12 @@ objetoController.createObject = (req, res) => {
         !body.forma ||
         !body.descripcion
     ) {
-        return;
+        res.status(400).send({
+            status: 'FAILED',
+            data: {
+                error: "Uno de los siguientes datos esta faltando o esta vacio: forma o descripcion."
+            }
+        })
     }
 
     const newObject = {
@@ -31,7 +40,7 @@ objetoController.createObject = (req, res) => {
 
     const createdObject = objetoService.createObject(newObject)
 
-    res.send({status: 'OK', data:createdObject})
+    res.status(201).send({status: 'OK', data:createdObject})
 }
 
 objetoController.editObject = (req, res) => {
