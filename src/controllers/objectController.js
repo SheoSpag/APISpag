@@ -4,10 +4,10 @@ const objectController = {}
 
 
 objectController.getAllObjects = (req, res) => {
-    const { shape } = req.query
+    const { shape, length } = req.query
 
     try {
-        const allObjects = objectService.getAllObjetcts(shape)
+        const allObjects = objectService.getAllObjetcts(shape, length)
         if (allObjects == 0) {
             res
             .status(200)

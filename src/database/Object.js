@@ -3,9 +3,20 @@ const util = require('./utils')
 
 const Objeto = {}
 
-Objeto.getAllObjetcts = (include) => {
+Objeto.getAllObjetcts = (shape, length) => {
 
-    return include ? DB.objects.filter((e) => e.shape.toLowerCase().includes(include.toLowerCase())) : DB.objects;
+    let filteredObjects = DB.objects
+    
+    if (shape) {
+        filteredObjects = filteredObjects.filter((o) => o.shape.toLowerCase().includes(shape.toLowerCase()))
+    }
+
+    if (length) {
+        filteredObjects = filteredObjects.slice(0, length)
+    }
+
+    return filteredObjects;
+    
 }
 
 Objeto.getObjectById = (id) => {

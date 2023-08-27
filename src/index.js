@@ -4,7 +4,7 @@ const v2Router = require('./v2/routes/Objeto/objetoRutas')
 
 const app = express()
 
-const PORT = process.env.PORT || 5678;
+const PORT = process.env.PORT || 3030;
 
 app.use(express.json())
 app.use("/api/v1/objetos", v1Router)
