@@ -1,17 +1,17 @@
 const express = require('express')
 const router = express.Router()
-const objetoController = require('../../../controllers/objetoController')
+const objectController = require('../../../controllers/objectController')
 
-router.get("/", objetoController.getAllObjects)
+router.get("/", objectController.getAllObjects)
 
-router.get("/:idObjeto", objetoController.getObjectById)
+router.get("/:objectId", objectController.getObjectById)
 
-//router.get("/formaObjeto", objetoController.getObjectByShape)
+//router.get("/shapeObject", objetoController.getObjectByShape)
 
-router.post("/", objetoController.createObject)
+router.post("/", objectController.createObject)
 
-router.patch("/:idObjeto", objetoController.editObject)
+router.patch("/:objectId", objectController.editObject)
 
-router.delete("/:idObjeto", objetoController.deleteObject)
+router.delete("/:objectId", objectController.deleteObject)
 
 module.exports = router;

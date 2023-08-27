@@ -1,32 +1,32 @@
 {
-  "objetos": [
+  "objects": [
     {
       "id": "42e5-8e50-f9b3-8e50-6fa1e38e-123cd231d10a",
-      "forma": "Cuadrado",
-      "descripcion": "Hola soy un Cuadrado",
+      "shape": "Cuadrado",
+      "description": "Hola soy un Cuadrado",
       "createdAt": "4/20/2022",
       "updatedAt": "4/20/2022"
     },
     {
       "id": "f9b3-42e5-8e50-123cd231d10a-8e50-6fa1e38e",
-      "forma": "Circulo",
-      "descripcion": "Hola soy un Circulo",
+      "shape": "Circulo",
+      "description": "Hola soy un Circulo",
       "createdAt": "4/20/2022",
       "updatedAt": "4/20/2022"
     },
     {
       "id": "8e50-123cd231d10a-f9b3-42e5-8e50-6fa1e38e",
-      "forma": "Triangulo",
-      "descripcion": "Hola soy un Triangulo",
+      "shape": "Triangulo",
+      "description": "Hola soy un Triangulo",
       "createdAt": "4/20/2022",
       "updatedAt": "4/20/2022"
     },
     {
       "id": "6fa1e38e-f9b3-42e5-8e50-b66d3a620dcd",
-      "forma": "Elipse",
-      "descripcion": "Hola de nuevo, soy un elipse, pero editado",
+      "shape": "Hexagono",
+      "description": "Hola soy un Hexagono",
       "createdAt": "25/8/2023",
-      "updatedAt": "25/8/2023"
+      "updatedAt": "27/8/2023"
     }
   ]
 }

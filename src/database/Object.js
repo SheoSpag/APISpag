@@ -4,12 +4,12 @@ const util = require('./utils')
 const Objeto = {}
 
 Objeto.getAllObjetcts = () => {
-    return DB.objetos;
+    return DB.objects;
 }
 
 Objeto.getObjectById = (id) => {
 
-    const indexObject = DB.objetos.findIndex((e) => e.id == id)
+    const indexObject = DB.objects.findIndex((e) => e.id == id)
 
     if (!(indexObject > -1)) {
         throw {
@@ -20,47 +20,47 @@ Objeto.getObjectById = (id) => {
         }
     }
 
-    const objetoBuscado = DB.objetos.filter(e => e.id == id)
+    const objetoBuscado = DB.objects.filter(e => e.id == id)
 
     return objetoBuscado;
 }
 
-// Objeto.getOneObjectByShape = (formaObjeto) => {
+// Objeto.getOneObjectByShape = (objectShape) => {
 
-//     const indexObject = DB.objetos.findIndex((e) => e.forma == formaObjeto)
+//     const indexObject = DB.objects.findIndex((e) => e.shape == objectShape)
 
 //     if (!(indexObject > -1)) {
 //         throw {
 //             status: 404,
 //             data: {
-//                 error: `Object de forma: ${formaObjeto} not found`
+//                 error: `Object de forma: ${objectShape} not found`
 //             }
 //         }
 //     }
 
-//     const objetoBuscado = DB.objetos[indexObject]
+//     const serchedObject = DB.objects[indexObject]
 
-//     return objetoBuscado;
+//     return serchedObject;
 // }
 
 Objeto.createObject = (o) => {
-    const indexObject = DB.objetos.findIndex((e) => e.forma ==  o.forma)
+    const indexObject = DB.objects.findIndex((e) => e.shape ==  o.shape)
     if (indexObject > -1) {
         throw {
             status: 404,
             data: {
-                error: `Object with the name ${o.forma} already exist`
+                error: `Object with the name ${o.shape} already exist`
             }
         }
     }
 
-    DB.objetos.push(o)
+    DB.objects.push(o)
     util.saveToDatabase(DB)
     return o
 
 }
-Objeto.editObject = (id, cambios) => {
-    const indexObject = DB.objetos.findIndex(e => e.id === id)
+Objeto.editObject = (objectId, changes) => {
+    const indexObject = DB.objects.findIndex(e => e.id === objectId)
 
     if (!(indexObject > -1)) {
         throw {
@@ -71,20 +71,20 @@ Objeto.editObject = (id, cambios) => {
           };
     }
 
-    const objetoEditado = {
-        ...DB.objetos[indexObject],
-        ...cambios,
+    const editedObject = {
+        ...DB.objects[indexObject],
+        ...changes,
         updatedAt: new Date().toLocaleDateString()
     }
 
-    DB.objetos[indexObject] = objetoEditado;
+    DB.objects[indexObject] = editedObject;
     util.saveToDatabase(DB);
 
-    return objetoEditado;
+    return editedObject;
 }
 
 Objeto.deleteObject = (id) => {
-    const indexObject = DB.objetos.findIndex(e => e.id === id)
+    const indexObject = DB.objects.findIndex(e => e.id === id)
 
     if (!(indexObject > -1)) {
         throw {
@@ -95,9 +95,9 @@ Objeto.deleteObject = (id) => {
           };
     }
     
-    const objetoEliminado = DB.objetos.splice(indexObject, 1)
+    const eliminatedObject = DB.objects.splice(indexObject, 1)
     util.saveToDatabase(DB)
-    return objetoEliminado;
+    return eliminatedObject;
 }
 
 module.exports = Objeto;
