@@ -4,8 +4,10 @@ const objectController = {}
 
 
 objectController.getAllObjects = (req, res) => {
+    const { shape } = req.query
+
     try {
-        const allObjects = objectService.getAllObjetcts()
+        const allObjects = objectService.getAllObjetcts(shape)
         if (allObjects == 0) {
             res
             .status(200)
@@ -37,7 +39,7 @@ objectController.getAllObjects = (req, res) => {
 
 objectController.getObjectById = (req, res) => {
     const { objectId } = req.params
-    if( !objectId ){
+    if( !objectId ){ 
         res
         .status(400)
         .send({

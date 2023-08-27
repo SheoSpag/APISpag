@@ -3,8 +3,9 @@ const util = require('./utils')
 
 const Objeto = {}
 
-Objeto.getAllObjetcts = () => {
-    return DB.objects;
+Objeto.getAllObjetcts = (include) => {
+
+    return include ? DB.objects.filter((e) => e.shape.toLowerCase().includes(include.toLowerCase())) : DB.objects;
 }
 
 Objeto.getObjectById = (id) => {

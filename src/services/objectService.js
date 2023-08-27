@@ -2,9 +2,9 @@ const Object = require('../database/Object')
 const objectService = {}
 
 
-objectService.getAllObjetcts = () => {
+objectService.getAllObjetcts = (shape) => {
     try {
-        const allObjetcts = Object.getAllObjetcts()
+        const allObjetcts = Object.getAllObjetcts(shape)
         return allObjetcts;
     } catch (err) {
         throw err;
