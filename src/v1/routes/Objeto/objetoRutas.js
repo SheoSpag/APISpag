@@ -1,8 +1,12 @@
 const express = require('express')
+const apicache = require("apicache");
+
 const router = express.Router()
+const cache = apicache.middleware;
+
 const objectController = require('../../../controllers/objectController')
 
-router.get("/", objectController.getAllObjects)
+router.get("/", cache("3 minutes"),objectController.getAllObjects)
 
 router.get("/:objectId", objectController.getObjectById)
 
