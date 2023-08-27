@@ -4,7 +4,9 @@ const objetoController = require('../../../controllers/objetoController')
 
 router.get("/", objetoController.getAllObjects)
 
-router.get("/:idObjeto", objetoController.getOneObject)
+router.get("/:idObjeto", objetoController.getObjectById)
+
+//router.get("/formaObjeto", objetoController.getObjectByShape)
 
 router.post("/", objetoController.createObject)
 

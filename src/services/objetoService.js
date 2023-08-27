@@ -3,29 +3,58 @@ const objetoService = {}
 
 
 objetoService.getAllObjetcts = () => {
-    const AllObjetcts = Objeto.getAllObjetcts()
-    return AllObjetcts;
+    try {
+        const AllObjetcts = Objeto.getAllObjetcts()
+        return AllObjetcts;
+    } catch (err) {
+        throw err;
+    }
 }
 
-objetoService.getOneObject = (id) => {
-    const OneObject = Objeto.getOneObject(id)
-    return OneObject;
+objetoService.getObjectById = (id) => {
+    try {
+        const OneObject = Objeto.getObjectById(id)
+        return OneObject;
+    } catch (err) {
+        throw err
+    }
 }
+
+// objetoService.getObjectByShape = (formaObjeto) => {
+//     try {
+//         const OneObject = Objeto.getOneObject(formaObjeto)
+//         return OneObject;
+//     } catch (err) {
+//         throw err
+//     }
+// }
 
 objetoService.createObject = (o) => {
-    const objetoCreado = Objeto.createObject(o)
-
-    return objetoCreado;
+    try {
+        const objetoCreado = Objeto.createObject(o)
+        return objetoCreado;
+    } catch (err) {
+        throw err
+    }
 }
 
 objetoService.editObject = (id, cambios) => {
-    const editedObject = Objeto.editObject(id, cambios)
-    return editedObject;    
+
+    try {
+        const objetoEditado = Objeto.editObject(id, cambios)
+        return objetoEditado;
+    } catch (err) {
+        throw err
+    } 
 }
 
 objetoService.deleteObject = (id) => {
-    const objetoEliminado = Objeto.deleteObject(id)
-    return objetoEliminado;        
+    try {
+        const objetoEliminado = Objeto.deleteObject(id)
+        return objetoEliminado; 
+    } catch (err) {
+        throw err
+    }       
 }
 
 module.exports = objetoService;

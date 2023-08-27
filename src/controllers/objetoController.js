@@ -1,23 +1,76 @@
 const e = require('express');
 const objetoService = require('../services/objetoService');
-const { all } = require('../v1/routes/Objeto/objetoRutas');
+const { v4: uuid } = require('uuid')
 const objetoController = {}
 
 
 objetoController.getAllObjects = (req, res) => {
-    const allObjects = objetoService.getAllObjetcts()
+    try {
+        const allObjects = objetoService.getAllObjetcts()
 
-    if (!allObjects) {
-        res.status()
+        if (allObjects.length == 0) {
+            res
+            .status(200)
+            .send({
+                status: 'OK',
+                data:{
+                    message: 'Actualmente no hay objetos'
+                }
+            })
+        }
+        res
+        .status(200)
+        .send({
+            status: 'OK',
+            data: allObjects
+        })
+
+    } catch (error) {
+        res
+        .status(error?.error.status || 500)
+        .send({ status: 'FAILED', data: { error: error?.message || error}})
+
     }
-    res.send({status: 'OK', data: allObjects})
 }
 
-objetoController.getOneObject = (req, res) => {
+objetoController.getObjectById = (req, res) => {
     const { idObjeto } = req.params
-    const Object = objetoService.getOneObject(idObjeto)
-    res.send({status: 'OK', data: Object})
+    if( !idObjeto ){
+        res
+        .status(400)
+        .send({
+            status: 'FAILED',
+            message: {
+                error: 'El siguiente campo no fue enviado o esta vacio: idObjeto'
+            }
+        })
+    }
+    
+    try {
+        const Object = objetoService.getObjectById(idObjeto)
+        res
+        .status(200)
+        .send({
+            status: 'OK',
+            data: Object
+        })
+    } catch (error) {
+        res
+        .status(error?.status || 500)
+        .send(error?.data || error) 
+    }
 }
+
+// objetoController.getObjectByShape = (req, res) => {
+//     const { formaObjeto } = req.params
+//     if( !formaObjeto ){
+//         res.status(400).send({status: 'FAILED', message: {
+//             error: 'El siguente parametro no fue enviado o esta vacio: formaObjeto'
+//         }})
+//     }
+//     const Object = objetoService.getObjectByShape(formaObjeto)
+//     res.send({status: 'OK', data: Object})
+// }
 
 objetoController.createObject = (req, res) => {
     const { body } = req
@@ -28,19 +81,33 @@ objetoController.createObject = (req, res) => {
         res.status(400).send({
             status: 'FAILED',
             data: {
-                error: "Uno de los siguientes datos esta faltando o esta vacio: forma o descripcion."
+                error: `Alguno de los siguientes paramtros no fue enviado o esta vacio: forma o descripcion`
             }
         })
     }
 
-    const newObject = {
-        forma: body.forma,
-        descripcion: body.descripcion
+    try {
+        const newObject = {
+            id: uuid(),
+            forma: body.forma,
+            descripcion: body.descripcion,
+            createdAt: new Date().toLocaleDateString(),
+            updatedAt: new Date().toLocaleDateString()
+        }
+    
+        const createdObject = objetoService.createObject(newObject)
+        res
+        .status(201)
+        .send({
+            status: 'OK',
+            data:createdObject
+        })
+    } catch (error) {
+        res
+        .status(error?.status || 500)
+        .send(error?.data || error)
     }
 
-    const createdObject = objetoService.createObject(newObject)
-
-    res.status(201).send({status: 'OK', data:createdObject})
 }
 
 objetoController.editObject = (req, res) => {
@@ -48,18 +115,58 @@ objetoController.editObject = (req, res) => {
     const cambios  = req.body
 
     if (!idObjeto || !cambios) {
-        return;
+        res
+        .status(400)
+        .send({
+            satus: 'FAILED',
+            data: {
+                error: 'Uno de los siguientes parametros no se envio o esta vacio: idObjeto o cambios'
+            }
+        })
     }
 
-    const editedObject = objetoService.editObject(idObjeto, cambios)
-    res.send({status: 'OK', data: editedObject})
+    try {
+        const editedObject = objetoService.editObject(idObjeto, cambios)
+        res
+        .status(200)
+        .send({
+            status: 'OK',
+            data: editedObject
+        })
+    } catch (error) {
+        res
+        .status(error?.status || 500)
+        .send(error?.data || error)
+    }
 } 
 
 objetoController.deleteObject = (req, res) => {
     const idObjeto = req.params.idObjeto
 
-    const deletedObject = objetoService.deleteObject(idObjeto)
-    res.send({status: 'Ok', data: deletedObject})
+    if (!idObjeto) {
+        res
+        .statu(400)
+        .send({
+            satus: 'FAILED',
+            data: {
+                error: 'El siguiente parametro no se envio o esta vacio: idObjeto'
+            }
+        })
+    }
+
+    try {
+        const deletedObject = objetoService.deleteObject(idObjeto)
+        res
+        .status(200)
+        .send({
+            status: 'Ok',
+            data: deletedObject
+        })
+    } catch (error) {
+        res
+        .status(error?.status || 500)
+        .send(error?.data || error)
+    }
 }
 
 module.exports = objetoController

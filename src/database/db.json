@@ -1,21 +1,21 @@
 {
   "objetos": [
     {
-      "id": 2,
+      "id": "42e5-8e50-f9b3-8e50-6fa1e38e-123cd231d10a",
       "forma": "Cuadrado",
       "descripcion": "Hola soy un Cuadrado",
       "createdAt": "4/20/2022",
       "updatedAt": "4/20/2022"
     },
     {
-      "id": 1,
+      "id": "f9b3-42e5-8e50-123cd231d10a-8e50-6fa1e38e",
       "forma": "Circulo",
       "descripcion": "Hola soy un Circulo",
       "createdAt": "4/20/2022",
       "updatedAt": "4/20/2022"
     },
     {
-      "id": 3,
+      "id": "8e50-123cd231d10a-f9b3-42e5-8e50-6fa1e38e",
       "forma": "Triangulo",
       "descripcion": "Hola soy un Triangulo",
       "createdAt": "4/20/2022",
