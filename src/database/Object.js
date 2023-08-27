@@ -25,23 +25,23 @@ Objeto.getObjectById = (id) => {
     return objetoBuscado;
 }
 
-// Objeto.getOneObjectByShape = (objectShape) => {
+Objeto.getOneObjectByShape = (objectShape) => {
 
-//     const indexObject = DB.objects.findIndex((e) => e.shape == objectShape)
+    const indexObject = DB.objects.findIndex((e) => e.shape == objectShape)
 
-//     if (!(indexObject > -1)) {
-//         throw {
-//             status: 404,
-//             data: {
-//                 error: `Object de forma: ${objectShape} not found`
-//             }
-//         }
-//     }
+    if (!(indexObject > -1)) {
+        throw {
+            status: 404,
+            data: {
+                error: `Object of shape: ${objectShape} not found`
+            }
+        }
+    }
 
-//     const serchedObject = DB.objects[indexObject]
+    const serchedObject = DB.objects[indexObject]
 
-//     return serchedObject;
-// }
+    return serchedObject;
+}
 
 Objeto.createObject = (o) => {
     const indexObject = DB.objects.findIndex((e) => e.shape ==  o.shape)

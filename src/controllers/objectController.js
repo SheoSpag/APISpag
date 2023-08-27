@@ -63,21 +63,21 @@ objectController.getObjectById = (req, res) => {
     }
 }
 
-// objectController.getObjectByShape = (req, res) => {
-//     const { shapeObject } = req.params
-//     if( !shapeObject ){
-//         res
-//          .status(400)
-//          .send({
-//              status: 'FAILED', 
-//              message: {
-//                  error: 'The following field was not sent or is empty: shapeObject'
-//              }
-//          })
-//     }
-//     const Object = objectService.getObjectByShape(shapeObject)
-//     res.send({status: 'OK', data: Object})
-// }
+objectController.getObjectByShape = (req, res) => {
+    const { shapeObject } = req.params
+    if( !shapeObject ){
+        res
+         .status(400)
+         .send({
+             status: 'FAILED', 
+             message: {
+                 error: 'The following field was not sent or is empty: shapeObject'
+             }
+         })
+    }
+    const Object = objectService.getObjectByShape(shapeObject)
+    res.send({status: 'OK', data: Object})
+}
 
 objectController.createObject = (req, res) => {
     const { body } = req

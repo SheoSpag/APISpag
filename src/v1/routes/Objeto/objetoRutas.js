@@ -6,7 +6,7 @@ router.get("/", objectController.getAllObjects)
 
 router.get("/:objectId", objectController.getObjectById)
 
-//router.get("/shapeObject", objetoController.getObjectByShape)
+router.get("/:shapeObject/byShape", objectController.getObjectByShape)
 
 router.post("/", objectController.createObject)
 
