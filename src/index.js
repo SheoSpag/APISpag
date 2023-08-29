@@ -1,10 +1,11 @@
 const express = require('express')
+const dotenv = require('dotenv').config();
 const v1Router = require('./v1/routes/Objeto/objetoRutas')
 const v2Router = require('./v2/routes/Objeto/objetoRutas')
 
 const app = express()
 
-const PORT = process.env.PORT || 3030;
+const PORT = process.env.PORT || 2424;
 
 app.use(express.json())
 app.use("/api/v1/objetos", v1Router)
