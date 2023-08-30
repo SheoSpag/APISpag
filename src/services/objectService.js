@@ -1,11 +1,10 @@
 const Object = require('../database/Object')
-// const Object = require('../database/ObjectMockapi')
 const objectService = {}
 
 
 objectService.getAllObjetcts = (shape, length) => {
     try {
-        const allObjetcts = Object.getAllObjetcts(shape, length)
+        const allObjetcts = Object.getAllObjects(shape, length)
         return allObjetcts;
     } catch (err) {
         throw err;
@@ -21,9 +20,9 @@ objectService.getObjectById = (id) => {
     }
 }
 
-objectService.getObjectByShape = (shapeObject) => {
+objectService.getObjectById = (shape) => {
     try {
-        const oneObject = Object.getOneObjectByShape(shapeObject)
+        const oneObject = Object.getObjectByShape(shape)
         return oneObject;
     } catch (err) {
         throw err
@@ -38,6 +37,8 @@ objectService.createObject = (o) => {
         throw err
     }
 }
+
+
 
 objectService.editObject = (id, cambios) => {
 

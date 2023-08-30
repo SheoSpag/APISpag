@@ -1,115 +1,28 @@
 const DB = require('./db.json')
+const objectSchema = require('../models/ObjectSchema')
 const util = require('./utils')
 
 const Objeto = {}
 
-Objeto.getAllObjetcts = (shape, length) => {
-
-    let filteredObjects = DB.objects
-    
-    if (shape) {
-        filteredObjects = filteredObjects.filter((o) => o.shape.toLowerCase().includes(shape.toLowerCase()))
-    }
-
-    if (length) {
-        filteredObjects = filteredObjects.slice(0, length)
-    }
-
-    return filteredObjects;
-    
+Objeto.getAllObjects = async (shape, length) => {
+        return;
 }
 
-Objeto.getObjectById = (id) => {
 
-    const indexObject = DB.objects.findIndex((e) => e.id == id)
-
-    if (!(indexObject > -1)) {
-        throw {
-            status: 404,
-            data: {
-                error: `Object id: ${id} not found`
-            }
-        }
-    }
-
-    const objetoBuscado = DB.objects.filter(e => e.id == id)
-
-    return objetoBuscado;
+Objeto.getObjectById = async (id) => {
 }
 
-Objeto.getOneObjectByShape = (objectShape) => {
 
-    const indexObject = DB.objects.findIndex((e) => e.shape == objectShape)
-
-    if (!(indexObject > -1)) {
-        throw {
-            status: 404,
-            data: {
-                error: `Object of shape: ${objectShape} not found`
-            }
-        }
-    }
-
-    const serchedObject = DB.objects[indexObject]
-
-    return serchedObject;
-}
-
-Objeto.createObject = (o) => {
-    const indexObject = DB.objects.findIndex((e) => e.shape ==  o.shape)
-    if (indexObject > -1) {
-        throw {
-            status: 404,
-            data: {
-                error: `Object with the name ${o.shape} already exist`
-            }
-        }
-    }
-
-    DB.objects.push(o)
-    util.saveToDatabase(DB)
-    return o
+Objeto.createObject = async (o) => {
 
 }
+
 Objeto.editObject = (objectId, changes) => {
-    const indexObject = DB.objects.findIndex(e => e.id === objectId)
-
-    if (!(indexObject > -1)) {
-        throw {
-            status: 404,
-            data:{
-                error: `Object id: ${id} not found`
-            }
-          };
-    }
-
-    const editedObject = {
-        ...DB.objects[indexObject],
-        ...changes,
-        updatedAt: new Date().toLocaleDateString()
-    }
-
-    DB.objects[indexObject] = editedObject;
-    util.saveToDatabase(DB);
-
-    return editedObject;
+    return;
 }
 
 Objeto.deleteObject = (id) => {
-    const indexObject = DB.objects.findIndex(e => e.id === id)
-
-    if (!(indexObject > -1)) {
-        throw {
-            status: 404,
-            data:{
-                error: `Object id: ${id} not found`
-            }
-          };
-    }
-    
-    const eliminatedObject = DB.objects.splice(indexObject, 1)
-    util.saveToDatabase(DB)
-    return eliminatedObject;
+    return ;
 }
 
 module.exports = Objeto;

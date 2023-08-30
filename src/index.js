@@ -1,13 +1,19 @@
 const express = require('express')
+const DB = require('./database/dbConnection')
+
 const dotenv = require('dotenv').config();
+
 const v1Router = require('./v1/routes/Objeto/objetoRutas')
 const v2Router = require('./v2/routes/Objeto/objetoRutas')
 
 const app = express()
 
+DB.connect()
+
 const PORT = process.env.PORT || 2424;
 
 app.use(express.json())
+
 app.use("/api/v1/objetos", v1Router)
 //app.use("/api/v2/objetos", v2Router)
 

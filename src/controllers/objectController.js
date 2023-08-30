@@ -1,13 +1,12 @@
 const objectService = require('../services/objectService');
-const { v4: uuid } = require('uuid')
 const objectController = {}
 
 
-objectController.getAllObjects = (req, res) => {
+objectController.getAllObjects = async (req, res) => {
     const { shape, length } = req.query
 
     try {
-        const allObjects = objectService.getAllObjetcts(shape, length)
+        const allObjects = await objectService.getAllObjetcts( shape, length)
         if (allObjects == 0) {
             res
             .status(200)
@@ -37,7 +36,7 @@ objectController.getAllObjects = (req, res) => {
     }
 }
 
-objectController.getObjectById = (req, res) => {
+objectController.getObjectById = async (req, res) => {
     const { objectId } = req.params
     if( !objectId ){ 
         res
@@ -51,13 +50,15 @@ objectController.getObjectById = (req, res) => {
     }
     
     try {
-        const Object = objectService.getObjectById(objectId)
+        const Object = await objectService.getObjectById(objectId)
+
         res
         .status(200)
         .send({
             status: 'OK',
             data: Object
         })
+        
     } catch (error) {
         res
         .status(error?.status || 500)
@@ -65,23 +66,7 @@ objectController.getObjectById = (req, res) => {
     }
 }
 
-objectController.getObjectByShape = (req, res) => {
-    const { shapeObject } = req.params
-    if( !shapeObject ){
-        res
-         .status(400)
-         .send({
-             status: 'FAILED', 
-             message: {
-                 error: 'The following field was not sent or is empty: shapeObject'
-             }
-         })
-    }
-    const Object = objectService.getObjectByShape(shapeObject)
-    res.send({status: 'OK', data: Object})
-}
-
-objectController.createObject = (req, res) => {
+objectController.createObject = async (req, res) => {
     const { body } = req
     if (
         !body.shape ||
@@ -97,14 +82,13 @@ objectController.createObject = (req, res) => {
 
     try {
         const newObject = {
-            id: uuid(),
             shape: body.shape,
             description: body.description,
             createdAt: new Date().toLocaleDateString(),
             updatedAt: new Date().toLocaleDateString()
         }
     
-        const createdObject = objectService.createObject(newObject)
+        const createdObject = await objectService.createObject(newObject)
         res
         .status(201)
         .send({
@@ -119,7 +103,7 @@ objectController.createObject = (req, res) => {
 
 }
 
-objectController.editObject = (req, res) => {
+objectController.editObject = async (req, res) => {
     const { objectId } = req.params
     const changes = req.body
 
@@ -146,7 +130,7 @@ objectController.editObject = (req, res) => {
     }
 
     try {
-        const editedObject = objectService.editObject(objectId, changes)
+        const editedObject = await objectService.editObject(objectId, changes)
         res
         .status(200)
         .send({
@@ -160,7 +144,7 @@ objectController.editObject = (req, res) => {
     }
 } 
 
-objectController.deleteObject = (req, res) => {
+objectController.deleteObject = async (req, res) => {
     const {objectId} = req.params
 
     if (!objectId) {
@@ -175,7 +159,7 @@ objectController.deleteObject = (req, res) => {
     }
 
     try {
-        const deletedObject = objectService.deleteObject(objectId)
+        const deletedObject = await objectService.deleteObject(objectId)
         res
         .status(200)
         .send({
