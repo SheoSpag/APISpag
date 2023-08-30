@@ -52,6 +52,15 @@ objectController.getObjectById = async (req, res) => {
     try {
         const Object = await objectService.getObjectById(objectId)
 
+        if (!Object) {
+            throw {
+                status: 404,
+                data:{
+                    error: `Object with id ${id} not found`
+                }
+            }
+        }
+
         res
         .status(200)
         .send({
@@ -116,6 +125,17 @@ objectController.editObject = async (req, res) => {
                 error: 'The following field was not sent or is empty: idObject'
             }
         })
+    }
+
+    if (!changes.shape || !changes.description) {
+        res
+         .status(400)
+         .send({
+            status: 'FAILED',
+            data: {
+                error: 'One of the following fields was not sent or is empty: shape or description '
+            }
+         })
     }
 
     if (!changes) {

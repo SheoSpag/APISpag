@@ -20,15 +20,6 @@ objectService.getObjectById = (id) => {
     }
 }
 
-objectService.getObjectById = (shape) => {
-    try {
-        const oneObject = Object.getObjectByShape(shape)
-        return oneObject;
-    } catch (err) {
-        throw err
-    }
-}
-
 objectService.createObject = (o) => {
     try {
         const createdObject = Object.createObject(o)
